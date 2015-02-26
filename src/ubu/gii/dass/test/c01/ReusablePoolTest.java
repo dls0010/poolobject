@@ -9,6 +9,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import ubu.gii.dass.c01.ReusablePool;
+
 /**
  * @author alumno
  *
@@ -34,7 +36,16 @@ public class ReusablePoolTest {
 	 */
 	@Test
 	public void testGetInstance() {
-		fail("Not yet implemented");
+		//Creación de dos objetos del tipo ReusablePool
+		ReusablePool pool;
+		ReusablePool pool2;
+		
+		//Instanciación a traves del método getInstance que define el patron Singleton.
+		pool = ReusablePool.getInstance();
+		pool2 = ReusablePool.getInstance();
+		
+		//Comprobacion de que haya una unica instancia
+		assertTrue(pool==pool2);	
 	}
 
 	/**
