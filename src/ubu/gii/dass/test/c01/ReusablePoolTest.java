@@ -103,6 +103,8 @@ public class ReusablePoolTest {
 		//Llamamos al metodo releaseReusable pasandole un elemento reusable para que lo añada
 		//si no lo contiene el pool
 		pool.releaseReusable(elemento);
+		//Intentamos volver a meter el mismo elemento
+		pool.releaseReusable(elemento);
 		//Obtenemos el toString() después de haberlo añadido
 		texto2=pool.toString();
 		//Comprobamos que ambos son diferentes
