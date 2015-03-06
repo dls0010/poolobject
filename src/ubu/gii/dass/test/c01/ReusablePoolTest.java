@@ -5,10 +5,14 @@ package ubu.gii.dass.test.c01;
 
 import static org.junit.Assert.*;
 
+import java.util.Vector;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import ubu.gii.dass.c01.NotFreeInstanceException;
+import ubu.gii.dass.c01.Reusable;
 import ubu.gii.dass.c01.ReusablePool;
 
 /**
@@ -22,6 +26,7 @@ public class ReusablePoolTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
+		
 	}
 
 	/**
@@ -36,11 +41,11 @@ public class ReusablePoolTest {
 	 */
 	@Test
 	public void testGetInstance() {
-		//Creación de dos objetos del tipo ReusablePool
+		//Creaciï¿½n de dos objetos del tipo ReusablePool
 		ReusablePool pool;
 		ReusablePool pool2;
 		
-		//Instanciación a traves del método getInstance que define el patron Singleton.
+		//Instanciaciï¿½n a traves del mï¿½todo getInstance que define el patron Singleton.
 		pool = ReusablePool.getInstance();
 		pool2 = ReusablePool.getInstance();
 		
@@ -53,7 +58,27 @@ public class ReusablePoolTest {
 	 */
 	@Test
 	public void testAcquireReusable() {
-		fail("Not yet implemented");
+		
+		//Instanciamos un objeto de tipo ReusablePool
+		ReusablePool pool;
+		pool = ReusablePool.getInstance();
+		
+		//Guardamos en una cadena el contenido del pool
+		String texto1 = pool.toString();
+		String texto2 = null ;
+		try {
+			//Llamamos al metodo acquireReusable que elimina un elemento del pool
+			pool.acquireReusable();
+			//Guardamos en una cadena el contenido del pool
+			texto2 = pool.toString();
+		} catch (NotFreeInstanceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//Comprobamos las dos cadenas para verificar que el ultimo elemento ha sido borrado
+		assertTrue(texto1!=texto2);
+		
+		
 	}
 
 	/**
