@@ -64,7 +64,8 @@ public class ReusablePoolTest {
 	 */
 	@Test
 	public void testAcquireReusable() {
-		
+		//Creamos un objeto de tipo Throwable
+		Throwable ex = null;
 		//Instanciamos un objeto de tipo ReusablePool
 		ReusablePool pool;
 		pool = ReusablePool.getInstance();
@@ -77,14 +78,18 @@ public class ReusablePoolTest {
 			pool.acquireReusable();
 			//Guardamos en una cadena el contenido del pool
 			texto2 = pool.toString();
+			pool.acquireReusable();
+			pool.acquireReusable();
+			//volvemos a llamar al metodo para que lance una exception
+			pool.acquireReusable();
 		} catch (NotFreeInstanceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//recogemos la exception y la guardamos en el objeto creado
+			ex= e;
 		}
 		//Comprobamos las dos cadenas para verificar que el ultimo elemento ha sido borrado
-		assertTrue(texto1!=texto2);
-		
-		
+		assertTrue(texto1!=texto2);	
+		//Comprobamos si la exception lanzada arriba es de tipo NotFreeInstanceException
+		assertTrue(ex instanceof NotFreeInstanceException);
 	}
 
 	/**
