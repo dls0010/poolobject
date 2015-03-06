@@ -47,10 +47,16 @@ public class ReusablePoolTest {
 		
 		//Instanciaci�n a traves del m�todo getInstance que define el patron Singleton.
 		pool = ReusablePool.getInstance();
+		//Obtenemos el hashCode perteneciente al pool
+		int hashCode1 = pool.hashCode();
 		pool2 = ReusablePool.getInstance();
+		//Obtenemos el hashCode perteneciente al pool2
+		int hashCode2 = pool2.hashCode();
 		
 		//Comprobacion de que haya una unica instancia
-		assertTrue(pool==pool2);	
+		assertTrue(pool==pool2);
+		//Comprobacion de que los hashCode son identicos, ya que pertenecen a mismo objeto
+		assertTrue(hashCode1==hashCode2);
 	}
 
 	/**
