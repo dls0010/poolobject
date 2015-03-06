@@ -86,7 +86,22 @@ public class ReusablePoolTest {
 	 */
 	@Test
 	public void testReleaseReusable() {
-		fail("Not yet implemented");
+		//Creamos un objeto de  tipo ReusablePool y uno de tipo Reusable
+		Reusable elemento = new Reusable();
+		ReusablePool pool;
+        //Obtenemos una instancia de pool
+		pool=ReusablePool.getInstance();
+		//Obtenemos el toString() del pool antes de añadirle un nuevo elemento
+		String texto1 = pool.toString();
+		String texto2 = null ;
+		//Llamamos al metodo releaseReusable pasandole un elemento reusable para que lo añada
+		//si no lo contiene el pool
+		pool.releaseReusable(elemento);
+		//Obtenemos el toString() después de haberlo añadido
+		texto2=pool.toString();
+		//Comprobamos que ambos son diferentes
+		assertTrue(texto1!=texto2);
+		
 	}
 
 }
